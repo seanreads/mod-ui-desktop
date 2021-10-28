@@ -1,18 +1,26 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
-let mainWindow;
+/* Put Node code here for the main process */
+
+let mainWindow; // Here and below put code for the mainWindow renderer process
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    width: 1000, height: 800,
     webPreferences: {
+      nodeIntegration: true,
       preload: path.join(__dirname, 'modWindow.js')
     }
   })
 
   mainWindow.loadURL('http://moddwarf.local')
 
-  //mainWindow.loadURL(path.join('file://',__dirname,'index.html'))
+  mainWindow.webContents.openDevTools() // Remove in production
+
+  mainWindow.on('closed', () => {
+    mainWindow = null
+  })
 
 }
 
