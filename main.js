@@ -37,6 +37,16 @@ let mainMenu = Menu.buildFromTemplate([
     ]
   },
   {
+    label: 'CV Ports',
+    submenu: [
+      {label: 'Ctrl2CV -> Big Muff'},
+      {label: 'Ctrl2CV -> DS-1'},
+      {label: 'Ctrl2CV -> X-Fade'},
+      {type: 'separator'},
+      {label: 'Enable Management', type: 'checkbox', checked: true}
+    ]
+  },
+  {
     label: 'Snapshots',
     submenu: [
       {label: 'New'},
@@ -53,7 +63,7 @@ let mainMenu = Menu.buildFromTemplate([
       {label: 'Save', accelerator: 'CommandOrControl+S'},
       {label: 'Save As...',  accelerator: 'CommandOrControl+Shift+S'},
       {type:'separator'},
-      {label: 'Disable'}         
+      {label: 'Enable Snapshots', type: 'checkbox', checked: true}         
     ]
   },
   {
