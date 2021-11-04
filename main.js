@@ -9,7 +9,7 @@ let mainMenu = Menu.buildFromTemplate([
   {
     label: app.name,
     submenu: [
-      {label: 'About MOD'},
+      {label: 'About MOD Desktop'},
       {type: 'separator'},
       {label: 'Preferences...', accelerator: 'CommandOrControl+,'},
       {type: 'separator'},
@@ -21,31 +21,77 @@ let mainMenu = Menu.buildFromTemplate([
     submenu: [
       {label: 'New', accelerator: 'CommandOrControl+N'},
       {label: 'Open...', accelerator: 'CommandOrControl+O'},
-      {label: 'Open Recent', 
-        submenu: [ {label: 'Test 1'}, {label: 'Test 2'}, {label: 'Test 3'}]
+      {type: 'separator'},
+      {label: 'Recent', enabled:false},
+      {label: 'Pedalboard 1'},
+      {label: 'Pedalboard 2'},
+      {label: 'Pedalboard 3'},
+      {label: 'More', 
+        submenu: [ {label: 'Pedalboard 4'}, {label: 'Pedalboard 5'}, {label: 'Pedalboard 6'}]
       },
       {type: 'separator'},
       {label: 'Save', accelerator: 'CommandOrControl+S'},
-      {label: 'Save As...',  accelerator: 'CommandOrControl+Shift+S'}
+      {label: 'Save As...',  accelerator: 'CommandOrControl+Shift+S'},
+      {type:'separator'},
+      {label: 'Share'}
     ]
   },
   {
     label: 'Snapshots',
     submenu: [
-      {label: 'New'}
+      {label: 'New'},
+      {label: 'Open'},
+      {type: 'separator'},
+      {label: 'Recent', enabled:false},
+      {label: 'Snapshot 1'},
+      {label: 'Snapshot 2'},
+      {label: 'Snapshot 3'},
+      {label: 'More', 
+        submenu: [ {label: 'Snapshot 4'}, {label: 'Snapshot 5'}, {label: 'Snapshot 6'}]
+      },
+      {type: 'separator'},
+      {label: 'Save', accelerator: 'CommandOrControl+S'},
+      {label: 'Save As...',  accelerator: 'CommandOrControl+Shift+S'},
+      {type:'separator'},
+      {label: 'Disable'}         
     ]
   },
   {
     label: 'Banks',
     submenu: [
-      {label: 'New'}
+      {label: 'New'},
+      {type: 'separator'},
+      {label: 'CHAINS: Guitar'},
+      {label: 'CHAINS: Bass'},
+      {label: 'CHAINS: Synths'},
+      {label: 'CHAINS: Effects'},
+      {label: 'CHAINS: Mastering'},
+      {label: 'CHAINS: Utilities'},
+      {type: 'separator'},
+      {label: 'All Banks'},
     ]
   },
   {
     label: 'View',
     submenu: [
+      {label: 'Full Screen'},
+      {type: 'separator'},
       {label: 'File Manager'},
-      {label: 'Plugin Store'}
+      {label: 'Plugin Store'},
+      {type: 'separator'},
+      {label: 'Zoom In'},
+      {label: 'Zoom Out'},
+    ]
+  },
+  {
+    label: 'Help',
+    submenu: [
+      {label: 'Read the MOD Dekstop Manual'},
+      {type: 'separator'},
+      {label: 'Visit moddevices.com...'},
+      {label: 'Join the User Forum...'},
+      {type: 'separator'},
+      {label: 'Check for Updates...'},
     ]
   }
 ])
