@@ -1,9 +1,23 @@
-const { app, BrowserWindow, Menu, MenuItem } = require('electron')
+const { app, BrowserWindow, Menu, MenuItem, Tray } = require('electron')
 const path = require('path')
 
 /* Put Node code here for the main process */
 
-let mainWindow; // Here and below put code for the mainWindow renderer process
+let mainWindow, tray; // Here and below put code for the mainWindow renderer process
+
+let trayMenu = Menu.buildFromTemplate([
+  { label: 'Manage CV Ports', type: 'checkbox'},
+  { label: 'Enable Snapshots', type: 'checkbox'},
+  {type: 'separator'},
+  { label: 'MIDI Ports'},
+  { label: 'Settings'},
+])
+
+function createTray () {
+  tray = new Tray('modLogoTemplate@2x.png')
+  tray.setToolTip('MOD Desktop')
+  tray.setContextMenu(trayMenu)
+}
 
 let mainMenu = Menu.buildFromTemplate([
   {
@@ -37,6 +51,16 @@ let mainMenu = Menu.buildFromTemplate([
     ]
   },
   {
+    label: 'CV Ports',
+    submenu: [
+      {label: 'Ctrl2CV -> Big Muff'},
+      {label: 'Ctrl2CV -> DS-1'},
+      {label: 'Ctrl2CV -> X-Fade'},
+      {type: 'separator'},
+      {label: 'Enable Management', type: 'checkbox', checked: true}
+    ]
+  },
+  {
     label: 'Snapshots',
     submenu: [
       {label: 'New'},
@@ -53,7 +77,7 @@ let mainMenu = Menu.buildFromTemplate([
       {label: 'Save', accelerator: 'CommandOrControl+S'},
       {label: 'Save As...',  accelerator: 'CommandOrControl+Shift+S'},
       {type:'separator'},
-      {label: 'Disable'}         
+      {label: 'Enable Snapshots', type: 'checkbox', checked: true}         
     ]
   },
   {
@@ -97,6 +121,9 @@ let mainMenu = Menu.buildFromTemplate([
 ])
 
 function createWindow() {
+
+createTray()
+
   mainWindow = new BrowserWindow({
     width: 1000, height: 800,
     webPreferences: {
