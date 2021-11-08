@@ -100,7 +100,11 @@ let mainMenu = Menu.buildFromTemplate([
     submenu: [
       {label: 'Full Screen'},
       {type: 'separator'},
-      {label: 'File Manager'},
+      {label: 'File Manager',
+       click: async () => {
+         mainWindow.webContents.executeJavaScript(`window.document.querySelector('#mod-file-manager').click()`)
+       }
+      },
       {label: 'Plugin Store'},
       {type: 'separator'},
       {label: 'Zoom In'},
