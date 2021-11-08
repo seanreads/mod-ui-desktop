@@ -13,5 +13,8 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('pedalboard-actions').remove()
   const dashboardContainer = document.querySelectorAll('#pedalboard > div')[3]
   dashboardContainer.style.top = '0px'
+
+  // Remve file manager menu item
+  document.getElementById('mod-file-manager').style.display = 'none'
   
 })
