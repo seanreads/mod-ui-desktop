@@ -16,5 +16,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Remve file manager menu item
   document.getElementById('mod-file-manager').style.display = 'none'
+
+  // Remove plugin-store menu item
+  document.getElementById('mod-cloud-plugins').style.display = 'none'
   
 })

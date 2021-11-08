@@ -83,10 +83,14 @@ const getMainMenu = (app, mainWindow) => Menu.buildFromTemplate([
         {type: 'separator'},
         {label: 'File Manager',
             click: async () => {
-            mainWindow.webContents.executeJavaScript(`window.document.querySelector('#mod-file-manager').click()`)
+              mainWindow.webContents.executeJavaScript(`window.document.querySelector('#mod-file-manager').click()`)
             }
         },
-        {label: 'Plugin Store'},
+        {label: 'Plugin Store',
+            click: async () => {
+              mainWindow.webContents.executeJavaScript(`window.document.querySelector('#mod-cloud-plugins').click()`)  
+            }
+        },
         {type: 'separator'},
         {label: 'Zoom In'},
         {label: 'Zoom Out'},
