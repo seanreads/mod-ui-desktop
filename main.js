@@ -2,8 +2,6 @@ const { app, BrowserWindow, Menu, MenuItem, Tray } = require('electron')
 const path = require('path')
 const { getMainMenu, getTrayMenu } = require('./modMenu')
 
-//console.log(mainMenu, trayMenu)
-
 /* Put Node code here for the main process */
 
 let mainWindow, tray; // Here and below put code for the mainWindow renderer process
@@ -11,7 +9,7 @@ let mainWindow, tray; // Here and below put code for the mainWindow renderer pro
 function createTray () {
   tray = new Tray('modLogoTemplate@2x.png')
   tray.setToolTip('MOD Desktop')
-  tray.setContextMenu(getTrayMenu(mainWindow))
+  tray.setContextMenu(getTrayMenu())
 }
 
 function createWindow() {
