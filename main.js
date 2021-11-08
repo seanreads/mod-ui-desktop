@@ -1,128 +1,22 @@
 const { app, BrowserWindow, Menu, MenuItem, Tray } = require('electron')
 const path = require('path')
+const { getMainMenu, getTrayMenu } = require('./modMenu')
+
+//console.log(mainMenu, trayMenu)
 
 /* Put Node code here for the main process */
 
 let mainWindow, tray; // Here and below put code for the mainWindow renderer process
 
-let trayMenu = Menu.buildFromTemplate([
-  { label: 'Manage CV Ports', type: 'checkbox'},
-  { label: 'Enable Snapshots', type: 'checkbox'},
-  {type: 'separator'},
-  { label: 'MIDI Ports'},
-  { label: 'Settings'},
-])
-
 function createTray () {
   tray = new Tray('modLogoTemplate@2x.png')
   tray.setToolTip('MOD Desktop')
-  tray.setContextMenu(trayMenu)
+  tray.setContextMenu(getTrayMenu(mainWindow))
 }
-
-let mainMenu = Menu.buildFromTemplate([
-  {
-    label: app.name,
-    submenu: [
-      {label: 'About MOD Desktop'},
-      {type: 'separator'},
-      {label: 'Preferences...', accelerator: 'CommandOrControl+,'},
-      {type: 'separator'},
-      {label: 'Quit', accelerator: 'CommandOrControl+Q', click: () => { app.quit() }}
-    ]
-  },
-  {
-    label: 'Pedalboards',
-    submenu: [
-      {label: 'New', accelerator: 'CommandOrControl+N'},
-      {label: 'Open...', accelerator: 'CommandOrControl+O'},
-      {type: 'separator'},
-      {label: 'Recent', enabled:false},
-      {label: 'Pedalboard 1'},
-      {label: 'Pedalboard 2'},
-      {label: 'Pedalboard 3'},
-      {label: 'More', 
-        submenu: [ {label: 'Pedalboard 4'}, {label: 'Pedalboard 5'}, {label: 'Pedalboard 6'}]
-      },
-      {type: 'separator'},
-      {label: 'Save', accelerator: 'CommandOrControl+S'},
-      {label: 'Save As...',  accelerator: 'CommandOrControl+Shift+S'},
-      {type:'separator'},
-      {label: 'Share'}
-    ]
-  },
-  {
-    label: 'CV Ports',
-    submenu: [
-      {label: 'Ctrl2CV -> Big Muff'},
-      {label: 'Ctrl2CV -> DS-1'},
-      {label: 'Ctrl2CV -> X-Fade'},
-      {type: 'separator'},
-      {label: 'Enable Management', type: 'checkbox', checked: true}
-    ]
-  },
-  {
-    label: 'Snapshots',
-    submenu: [
-      {label: 'New'},
-      {label: 'Open'},
-      {type: 'separator'},
-      {label: 'Recent', enabled:false},
-      {label: 'Snapshot 1'},
-      {label: 'Snapshot 2'},
-      {label: 'Snapshot 3'},
-      {label: 'More', 
-        submenu: [ {label: 'Snapshot 4'}, {label: 'Snapshot 5'}, {label: 'Snapshot 6'}]
-      },
-      {type: 'separator'},
-      {label: 'Save', accelerator: 'CommandOrControl+S'},
-      {label: 'Save As...',  accelerator: 'CommandOrControl+Shift+S'},
-      {type:'separator'},
-      {label: 'Enable Snapshots', type: 'checkbox', checked: true}         
-    ]
-  },
-  {
-    label: 'Banks',
-    submenu: [
-      {label: 'New'},
-      {type: 'separator'},
-      {label: 'CHAINS: Guitar'},
-      {label: 'CHAINS: Bass'},
-      {label: 'CHAINS: Synths'},
-      {label: 'CHAINS: Effects'},
-      {label: 'CHAINS: Mastering'},
-      {label: 'CHAINS: Utilities'},
-      {type: 'separator'},
-      {label: 'All Banks'},
-    ]
-  },
-  {
-    label: 'View',
-    submenu: [
-      {label: 'Full Screen'},
-      {type: 'separator'},
-      {label: 'File Manager'},
-      {label: 'Plugin Store'},
-      {type: 'separator'},
-      {label: 'Zoom In'},
-      {label: 'Zoom Out'},
-    ]
-  },
-  {
-    label: 'Help',
-    submenu: [
-      {label: 'Read the MOD Dekstop Manual'},
-      {type: 'separator'},
-      {label: 'Visit moddevices.com...'},
-      {label: 'Join the User Forum...'},
-      {type: 'separator'},
-      {label: 'Check for Updates...'},
-    ]
-  }
-])
 
 function createWindow() {
 
-createTray()
+  createTray()
 
   mainWindow = new BrowserWindow({
     width: 1000, height: 800,
@@ -136,7 +30,7 @@ createTray()
 
   mainWindow.webContents.openDevTools() // Remove in production
 
-  Menu.setApplicationMenu(mainMenu)
+  Menu.setApplicationMenu(getMainMenu(app, mainWindow))
 
   mainWindow.on('closed', () => {
     mainWindow = null
