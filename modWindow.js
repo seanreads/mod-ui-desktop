@@ -23,4 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // Remove MIDI settings menu item
   document.getElementById('mod-show-midi-port').style.display = 'none'
   
+  // Remove MOD settings menu item
+  document.getElementById('mod-settings').style.display = 'none'
+
 })
