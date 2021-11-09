@@ -118,7 +118,11 @@ const getTrayMenu = (mainWindow) => Menu.buildFromTemplate([
             mainWindow.webContents.executeJavaScript(`window.document.querySelector('#mod-show-midi-port').click()`)  
         }
     },
-    { label: 'Settings'},
+    { label: 'Settings',
+        click: async () => {
+            mainWindow.webContents.executeJavaScript(`window.document.querySelector('#mod-settings').click()`)  
+        }
+    },
 ])
 
 module.exports = { getMainMenu, getTrayMenu }
