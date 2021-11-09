@@ -26,4 +26,10 @@ window.addEventListener('DOMContentLoaded', () => {
   // Remove MOD settings menu item
   document.getElementById('mod-settings').style.display = 'none'
 
+  // Remove constructor menu item
+  document.getElementById('mod-plugins').style.display = 'none'
+
+  // Remove pedalboard library menu item
+  document.getElementById('mod-pedalboard').style.display = 'none'
+
 })

@@ -20,7 +20,11 @@ const getMainMenu = (app, mainWindow) => Menu.buildFromTemplate([
                 mainWindow.webContents.executeJavaScript(`window.document.querySelector('header#pedalboard-actions button.js-reset').click()`)
             }
         },
-        {label: 'Open...', accelerator: 'CommandOrControl+O'},
+        {label: 'Open...', accelerator: 'CommandOrControl+O',
+            click: async () => {
+                mainWindow.webContents.executeJavaScript(`window.document.querySelector('#main-menu #mod-pedalboard').click()`)
+            }
+        },
         {type: 'separator'},
         {label: 'Recent', enabled:false},
         {label: 'Pedalboard 1'},
