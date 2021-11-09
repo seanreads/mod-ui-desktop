@@ -6,15 +6,13 @@ const { getMainMenu, getTrayMenu } = require('./modMenu')
 
 let mainWindow, tray; // Here and below put code for the mainWindow renderer process
 
-function createTray () {
+function createTray (mainWindow) {
   tray = new Tray('modLogoTemplate@2x.png')
   tray.setToolTip('MOD Desktop')
-  tray.setContextMenu(getTrayMenu())
+  tray.setContextMenu(getTrayMenu(mainWindow))
 }
 
 function createWindow() {
-
-  createTray()
 
   mainWindow = new BrowserWindow({
     width: 1000, height: 800,
@@ -27,6 +25,8 @@ function createWindow() {
   mainWindow.loadURL('http://moddwarf.local')
 
   mainWindow.webContents.openDevTools() // Remove in production
+
+  createTray(mainWindow)
 
   Menu.setApplicationMenu(getMainMenu(app, mainWindow))
 
