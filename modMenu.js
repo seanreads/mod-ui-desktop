@@ -14,7 +14,12 @@ const getMainMenu = (app, mainWindow) => Menu.buildFromTemplate([
     {
         label: 'Pedalboards',
         submenu: [
-        {label: 'New', accelerator: 'CommandOrControl+N'},
+        {label: 'New', accelerator: 'CommandOrControl+N',
+            click: async () => {
+                mainWindow.webContents.executeJavaScript(`window.document.querySelector('#main-menu #mod-plugins').click()`)
+                mainWindow.webContents.executeJavaScript(`window.document.querySelector('header#pedalboard-actions button.js-reset').click()`)
+            }
+        },
         {label: 'Open...', accelerator: 'CommandOrControl+O'},
         {type: 'separator'},
         {label: 'Recent', enabled:false},
