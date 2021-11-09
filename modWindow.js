@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.title = document.getElementById('pedalboard-info').getElementsByTagName('h1')[0].innerText
 
   // Remove web gui top menu
-  document.getElementById('pedalboard-actions').remove()
+  document.getElementById('pedalboard-actions').style.display = 'none'
   const dashboardContainer = document.querySelectorAll('#pedalboard > div')[3]
   dashboardContainer.style.top = '0px'
 
