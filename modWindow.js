@@ -19,5 +19,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Remove plugin-store menu item
   document.getElementById('mod-cloud-plugins').style.display = 'none'
+
+  // Remove MIDI settings menu item
+  document.getElementById('mod-show-midi-port').style.display = 'none'
   
 })

@@ -109,11 +109,15 @@ const getMainMenu = (app, mainWindow) => Menu.buildFromTemplate([
     }
 ])
 
-const getTrayMenu = () => Menu.buildFromTemplate([
+const getTrayMenu = (mainWindow) => Menu.buildFromTemplate([
     { label: 'Manage CV Ports', type: 'checkbox'},
     { label: 'Enable Snapshots', type: 'checkbox'},
     {type: 'separator'},
-    { label: 'MIDI Ports'},
+    { label: 'MIDI Ports',
+        click: async () => {
+            mainWindow.webContents.executeJavaScript(`window.document.querySelector('#mod-show-midi-port').click()`)  
+        }
+    },
     { label: 'Settings'},
 ])
 
