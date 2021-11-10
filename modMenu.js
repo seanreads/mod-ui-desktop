@@ -16,6 +16,8 @@ const getMainMenu = (app, mainWindow) => Menu.buildFromTemplate([
         submenu: [
         {label: 'New', accelerator: 'CommandOrControl+N',
             click: async () => {
+                if (new URL(mainWindow.webContents.getURL()).pathname != '/') 
+                  mainWindow.webContents.executeJavaScript(`window.location.href = '/'`)
                 mainWindow.webContents.executeJavaScript(`window.document.querySelector('#main-menu #mod-plugins').click()`)
                 mainWindow.webContents.executeJavaScript(`window.document.querySelector('header#pedalboard-actions button.js-reset').click()`)
             }
