@@ -75,16 +75,28 @@ const getMainMenu = (app, mainWindow) => Menu.buildFromTemplate([
     {
         label: 'Banks',
         submenu: [
-        {label: 'New'},
+        {label: 'New',
+            click: async () => {
+                if (new URL(mainWindow.webContents.getURL()).pathname != '/') 
+                    mainWindow.webContents.executeJavaScript(`window.location.href = '/'`)
+                mainWindow.webContents.executeJavaScript(`window.document.querySelector('#main-menu #mod-bank').click()`)
+                mainWindow.webContents.executeJavaScript(`window.document.querySelector('#bank-library #js-add-bank').click()`)
+            }
+        },
+        {label: 'Open...',
+            click: async () => {
+                if (new URL(mainWindow.webContents.getURL()).pathname != '/') 
+                    mainWindow.webContents.executeJavaScript(`window.location.href = '/'`)
+                mainWindow.webContents.executeJavaScript(`window.document.querySelector('#main-menu #mod-bank').click()`)
+            }
+        },
         {type: 'separator'},
         {label: 'CHAINS: Guitar'},
         {label: 'CHAINS: Bass'},
         {label: 'CHAINS: Synths'},
         {label: 'CHAINS: Effects'},
         {label: 'CHAINS: Mastering'},
-        {label: 'CHAINS: Utilities'},
-        {type: 'separator'},
-        {label: 'All Banks'},
+        {label: 'CHAINS: Utilities'}
         ]
     },
     {
